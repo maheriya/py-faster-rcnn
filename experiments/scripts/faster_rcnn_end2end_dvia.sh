@@ -4,7 +4,7 @@
 # DATASET is either pascal_voc or coco.
 #
 # Example:
-# ./experiments/scripts/faster_rcnn_end2end.sh 0 VGG_CNN_M_1024 pascal_voc \
+# ./experiments/scripts/faster_rcnn_end2end_dvia.sh 0 ZF dvia \
 #   --set EXP_DIR foobar RNG_SEED 42 TRAIN.SCALES "[400, 500, 600, 700]"
 
 set -x
@@ -27,7 +27,7 @@ case $DATASET in
     TRAIN_IMDB="dvia_train"
     TEST_IMDB="dvia_val"
     PT_DIR="dvia"
-    ITERS=40000
+    ITERS=450000
     ;;
   pascal_voc)
     TRAIN_IMDB="voc_2007_trainval"
@@ -51,10 +51,12 @@ case $DATASET in
 esac
 
 LOG="experiments/logs/faster_rcnn_end2end_dvia_${NET}_${EXTRA_ARGS_SLUG}.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
+#LOG="experiments/logs/frcn_dvia_${NET}.`date +'%Y-%m-%d_%H-%M-%S'`.txt"
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
 
 WEIGHTS="data/imagenet_models/${NET}.v2.caffemodel"
+#WEIGHTS="data/dvia_models/${NET}.v1.caffemodel"
 #WEIGHTS="data/faster_rcnn_models/${NET}_faster_rcnn_final.caffemodel"
 
 

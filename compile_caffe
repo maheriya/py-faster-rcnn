@@ -11,7 +11,7 @@ set ver=1.0.0-frcnn
 echo "This will install Caffe" $ver
 
 #goto LDCONFIG
-#goto BUILD
+goto BUILD
 #cd build && goto INSTALL || exit (1)
 sudo apt-get -y install --install-recommends libatlas3-base libatlas3-base libatlas-dev libatlas-base-dev 
 sudo apt-get -y install libboost-dev libboost-filesystem-dev 
@@ -23,29 +23,30 @@ BUILD:
 cd $cdir
 if (! -d build) mkdir build
 cd build
-#goto MAKE
+goto MAKE
 cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$prefix ..
 
 MAKE:
-make -j4
-make test
+make -j8
+chkst
+make -j8 test
+chkst
 make runtest
 chkst
 
 INSTALL:
-#        --replaces=caffe \
-
-sudo checkinstall --nodoc --strip=yes --backup=no \
-        --default \
-        --pkgname=caffe-frcnn \
-        --pkgversion=${ver} \
-        --requires=libatlas3-base,libatlas3-base,libatlas-dev,libatlas-base-dev,libboost-dev,libboost-filesystem-dev,libprotobuf-dev,protobuf-compiler,python-protobuf,libgoogle-glog-dev,libgflags-dev,libhdf5-dev,liblmdb-dev,liblmdb0,lmdb-doc,snappy,libsnappy-dev,libleveldb-dev,python-leveldb
-
+sudo make install
+##--sudo checkinstall --nodoc --strip=yes --backup=no \
+##--        --default \
+##--        --pkgname=caffe-frcnn \
+##--        --pkgversion=${ver} \
+##--        --requires=libatlas3-base,libatlas3-base,libatlas-dev,libatlas-base-dev,libboost-dev,libboost-filesystem-dev,libprotobuf-dev,protobuf-compiler,python-protobuf,libgoogle-glog-dev,libgflags-dev,libhdf5-dev,liblmdb-dev,liblmdb0,lmdb-doc,snappy,libsnappy-dev,libleveldb-dev,python-leveldb
+##--
 chkst
 
 
 LDCONFIG:
-set ldstr = ( echo "${prefix}/lib" )
-sudo sh -c "$ldstr > /etc/ld.so.conf.d/caffe-fast-rcnn.conf"
-sudo ldconfig
+##--set ldstr = ( echo "${prefix}/lib" )
+##--sudo sh -c "$ldstr > /etc/ld.so.conf.d/caffe-fast-rcnn.conf"
+##--sudo ldconfig
 echo "Caffe" $ver "ready to be used"

@@ -81,7 +81,7 @@ def demo(net, image_name):
            '{:d} object proposals').format(timer.total_time, boxes.shape[0])
 
     # Visualize detections for each class
-    CONF_THRESH = 0.7
+    CONF_THRESH = 0.64
     NMS_THRESH = 0.3
     for cls_ind, cls in enumerate(CLASSES[1:]):
         cls_ind += 1 # because we skipped background
@@ -149,7 +149,8 @@ if __name__ == '__main__':
     #im_names = ['3_doorframe_00010_00_BASE_IMAGE.png', '00002_00_BASE_IMAGE.png', '000456.jpg', '000542.jpg', '001150.jpg',
     #            '001763.jpg', '004545.jpg']
     im_names = ['1_stair_001.jpg', '1_stair_002.png', '2_curb_001.jpg', '2_curb_002.jpg',
-                '3_doorframe_001.jpg', '3_doorframe_002.png', '00120_00_BASE_IMAGE.png']
+                '3_doorframe_001.jpg', '3_doorframe_002.png', '00120_00_BASE_IMAGE.png', 'mono_imgl_3.png']
+#    im_names = ['mono_imgl_3.png', 'mono_imgl_4.png', 'mono_imgl_5.png', 'mono_imgr_2.png', 'mono_imgr_0.png', 'mono_imgr_1.png', 'multi_det_00178_00_BASE_IMAGE.png']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
         print 'Demo for data/demo/{}'.format(im_name)

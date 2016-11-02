@@ -2,7 +2,7 @@
 
 rm -f data/cache/train_gt_roidb.pkl >& /dev/null
 rm -rf data/DVIAdevkit/annotations_cache >& /dev/null
-rm -rf output/faster_rcnn_end2end_dvia/val >& /dev/null
+rm -rf output/faster_rcnn_end2end_dvia >& /dev/null
 
 rm -rf data/DVIAdevkit/results >& /dev/null
 mkdir -p data/DVIAdevkit/results/dvia
