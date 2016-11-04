@@ -50,19 +50,18 @@ case $DATASET in
     ;;
 esac
 
-LOG="experiments/logs/faster_rcnn_end2end_dvia_${NET}_${EXTRA_ARGS_SLUG}.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
-#LOG="experiments/logs/frcn_dvia_${NET}.`date +'%Y-%m-%d_%H-%M-%S'`.txt"
+LOG="experiments/logs/frcn_dvia_${NET}.`date +'%Y-%m-%d_%H-%M-%S'`.txt"
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
 
-WEIGHTS="data/imagenet_models/${NET}.v2.caffemodel"
-#WEIGHTS="data/dvia_models/${NET}.v1.caffemodel"
+WEIGHTS="data/dvia_models/${NET}.v1.caffemodel"
 #WEIGHTS="data/faster_rcnn_models/${NET}_faster_rcnn_final.caffemodel"
 
 
+##  --weights ${WEIGHTS} \
+##
 time ./tools/train_net.py --gpu ${GPU_ID} \
   --solver models/${PT_DIR}/${NET}/faster_rcnn_end2end/solver.prototxt \
-  --weights ${WEIGHTS} \
   --imdb ${TRAIN_IMDB} \
   --iters ${ITERS} \
   --cfg experiments/cfgs/faster_rcnn_end2end_dvia.yml \
