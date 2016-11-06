@@ -30,8 +30,8 @@ CLASSES = ('__background__',
            'stair', 'curb', 'doorframe')
 
 NETS = {'vgg16': ('VGG16', 'VGG16_faster_rcnn_final_dvia.caffemodel'),
-#        'zf': ('ZF', 'ZF_faster_rcnn_final_dvia.caffemodel')
-        'zf': ('ZF', 'ZF_faster_rcnn_final_dvia_2016_JUN_10.caffemodel')
+        'zf': ('ZF', 'ZF_faster_rcnn_final_dvia.caffemodel'),
+        'dvia': ('DVIANET', 'DVIANET_faster_rcnn_DVIADetDB_450000iter.caffemodel')
         }
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
@@ -102,7 +102,7 @@ def parse_args():
                         help='Use CPU mode (overrides --gpu)',
                         action='store_true')
     parser.add_argument('--net', dest='demo_net', help='Network to use [zf]',
-                        choices=NETS.keys(), default='zf')
+                        choices=NETS.keys(), default='dvia')
 
     args = parser.parse_args()
 
@@ -120,8 +120,8 @@ if __name__ == '__main__':
     prototxt = os.path.join(os.path.realpath(cfg.MODELS_DIR), NETS[args.demo_net][0],
                             'faster_rcnn_end2end', 'test.prototxt')
 
-    #caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models', NETS[args.demo_net][1])
-    caffemodel = os.path.realpath('output/faster_rcnn_end2end_dvia/train/zf_faster_rcnn_iter_40000.caffemodel')
+    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models', NETS[args.demo_net][1])
+    #caffemodel = os.path.realpath('output/faster_rcnn_end2end_dvia/train/dvianet_faster_rcnn_iter_50000.caffemodel')
 
 
     print 'caffemodel: {}'.format(caffemodel)

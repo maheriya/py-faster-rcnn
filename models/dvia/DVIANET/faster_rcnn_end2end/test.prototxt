@@ -22,7 +22,7 @@ layer {
   bottom: "data"
   top: "conv1"
   convolution_param {
-    num_output: 64
+    num_output: 80
     kernel_size: 5
     stride: 2
     weight_filler {
@@ -36,7 +36,7 @@ layer {
   bottom: "conv1"
   top: "cccp1a"
   convolution_param {
-    num_output: 42
+    num_output: 64
     kernel_size: 1
     stride: 1
     weight_filler {
@@ -56,7 +56,7 @@ layer {
   bottom: "cccp1a"
   top: "cccp1b"
   convolution_param {
-    num_output: 42
+    num_output: 64
     kernel_size: 1
     stride: 1
     weight_filler {
@@ -87,7 +87,7 @@ layer {
   bottom: "pool1"
   top: "conv2"
   convolution_param {
-    num_output: 64
+    num_output: 128
     kernel_size: 3
     stride: 1
     weight_filler {
@@ -212,7 +212,7 @@ layer {
   python_param {
     module: 'rpn.proposal_layer'
     layer: 'ProposalLayer'
-    param_str: "'feat_stride': 16"
+    param_str: "'feat_stride': 10"
   }
 }
 
@@ -228,7 +228,7 @@ layer {
   roi_pooling_param {
     pooled_w: 6
     pooled_h: 6
-    spatial_scale: 0.125 # 1/8 (150x250->17x30=~1/8) [0.0625 # 150x250->10x17=~1/16]
+    spatial_scale: 0.1 # 1/10 (150x250->16x28=~1/10) [0.0625 # 150x250->10x17=~1/16]
   }
 }
 
