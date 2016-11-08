@@ -141,13 +141,13 @@ def dvia_eval(detpath,
     image_ids = [x[0] for x in splitlines]
     confidence = np.array([float(x[1]) for x in splitlines])
     BB = np.array([[float(z) for z in x[2:]] for x in splitlines])
-    ##print "BB.shape: {}".format(BB.shape) ## FIXME: REMOVE
+    print "BB.shape: {}".format(BB.shape) ## FIXME: REMOVE
 
     # sort by confidence
     sorted_ind = np.argsort(-confidence)
-    ##print "sorted_ind: {}".format(sorted_ind) ## FIXME: REMOVE
+    print "sorted_ind: {}".format(sorted_ind) ## FIXME: REMOVE
     sorted_scores = np.sort(-confidence)
-    ##print "sorted_scores: {}".format(sorted_scores) ## FIXME: REMOVE
+    print "sorted_scores: {}".format(sorted_scores) ## FIXME: REMOVE
     BB = BB[sorted_ind, :]
     image_ids = [image_ids[x] for x in sorted_ind]
 

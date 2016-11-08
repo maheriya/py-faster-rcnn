@@ -1,4 +1,4 @@
 #!/bin/csh -f
 
-##./experiments/scripts/faster_rcnn_end2end_dvia.sh 0 ZF dvia | & tee faster_rcnn_end2end_dvia.log
-./experiments/scripts/faster_rcnn_end2end_dvia.sh 0 DVIANET dvia | & tee faster_rcnn_end2end_dvianet.log.txt
+./experiments/scripts/faster_rcnn_end2end_dvia.sh 0 ZF dvia | & tee faster_rcnn_end2end_dvianet_zf.log
+##./experiments/scripts/faster_rcnn_end2end_dvia.sh 0 DVIANET dvia | & tee faster_rcnn_end2end_dvianet_dviadetdb.log.txt
